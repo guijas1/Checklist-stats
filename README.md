@@ -85,7 +85,7 @@ REACT_APP_API_URL=http://localhost:8080/api
 1. **Clone o repositório**
 
    ```bash
-   git clone https://github.com/seuusuario/dashborard-kpi.git
+   git clone https://github.com/guijas1/dashborard-kpi.git
    ```
 2. **Acesse a pasta do projeto**
 
@@ -117,6 +117,6 @@ REACT_APP_API_URL=http://localhost:8080/api
 
 ## 👨‍💻 Autor
 
-**Guijas Rodrigues**
-📍 *Quality Software S/A – Projeto ONS Rollout*
+**Guijas1**
+📍 *Quality Software S/A – Projeto Rollout*
 🔗 [LinkedIn](#) | [GitHub](#)
