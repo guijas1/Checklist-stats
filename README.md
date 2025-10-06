@@ -1,4 +1,3 @@
-
 # 📊 Dashboard KPI – Front-End
 
 ## 🧩 Descrição
@@ -119,4 +118,4 @@ REACT_APP_API_URL=http://localhost:8080/api
 
 **Guijas1**
 📍 *Quality Software S/A – Projeto Rollout*
-🔗 [LinkedIn](#) | [GitHub](#)
+🔗 [LinkedIn](https://www.linkedin.com/in/guilherme-tavares-guijas/) | [GitHub](https://github.com/guijas1)
