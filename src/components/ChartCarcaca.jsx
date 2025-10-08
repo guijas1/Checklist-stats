@@ -1,4 +1,4 @@
-import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { Card } from "react-bootstrap";
 
 function ChartCarcaca({ data, theme }) {
@@ -25,23 +25,45 @@ function ChartCarcaca({ data, theme }) {
 
   return (
     <Card className="shadow-lg p-3 bg-dark-subtle border-0 h-100">
-      <h5 className="text-center text-primary mb-3">💠 Estado da Carcaça</h5>
-      <div className="d-flex justify-content-center">
-        <PieChart width={400} height={250}>
-          <Pie
-            data={carcaca}
-            dataKey="value"
-            nameKey="name"
-            outerRadius={110}
-            label
-          >
-            {carcaca.map((entry, i) => (
-              <Cell key={i} fill={cores[i % cores.length]} />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend verticalAlign="bottom" align="center" />
-        </PieChart>
+      <h5 className="text-center text-primary mb-4">💠 Estado da Carcaça</h5>
+
+      <div style={{ width: "100%", height: 320 }}>
+        <ResponsiveContainer>
+          <PieChart>
+            <Pie
+              data={carcaca}
+              dataKey="value"
+              nameKey="name"
+              innerRadius={45}
+              outerRadius={100}
+              labelLine={false}
+              label={({ name, percent }) =>
+                `${name} ${(percent * 100).toFixed(1)}%`
+              }
+            >
+              {carcaca.map((entry, i) => (
+                <Cell key={i} fill={cores[i % cores.length]} />
+              ))}
+            </Pie>
+
+            <Tooltip
+              formatter={(value) => [value, "Qtd."]}
+              contentStyle={{
+                backgroundColor: theme === "dark" ? "#212529" : "#f8f9fa",
+                border: "none",
+                borderRadius: "8px",
+                color: theme === "dark" ? "#fff" : "#000"
+              }}
+            />
+
+            <Legend
+              verticalAlign="bottom"
+              align="center"
+              iconType="circle"
+              wrapperStyle={{ marginTop: "20px" }}
+            />
+          </PieChart>
+        </ResponsiveContainer>
       </div>
     </Card>
   );

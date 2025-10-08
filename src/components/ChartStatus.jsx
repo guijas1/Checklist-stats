@@ -1,4 +1,4 @@
-import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { Card } from "react-bootstrap";
 
 function ChartStatus({ data, theme }) {
@@ -18,28 +18,54 @@ function ChartStatus({ data, theme }) {
 
   const cores =
     theme === "dark"
-      ? ["#198754", "#dc3545"]
-      : ["#28a745", "#ff4444"];
+      ? ["#198754", "#dc3545"] // verde e vermelho (modo escuro)
+      : ["#28a745", "#ff4444"]; // verde e vermelho (modo claro)
 
   return (
     <Card className="shadow-lg p-3 bg-dark-subtle border-0 h-100">
-      <h5 className="text-center text-success mb-3">⚙️ Status (Liga / Não liga)</h5>
-      <div className="d-flex justify-content-center">
-        <PieChart width={400} height={250}>
-          <Pie
-            data={status}
-            dataKey="value"
-            nameKey="name"
-            outerRadius={110}
-            label
-          >
-            {status.map((entry, i) => (
-              <Cell key={i} fill={cores[i % cores.length]} />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend verticalAlign="bottom" align="center" />
-        </PieChart>
+      <h5 className="text-center text-success mb-4">
+        ⚙️ Status (Liga / Não liga)
+      </h5>
+
+      <div style={{ width: "100%", height: 320 }}>
+        <ResponsiveContainer>
+          <PieChart>
+            <Pie
+              data={status}
+              dataKey="value"
+              nameKey="name"
+              innerRadius={45}
+              outerRadius={100}
+              labelLine={false}
+              label={({ name, percent }) =>
+                `${name} ${(percent * 100).toFixed(1)}%`
+              }
+            >
+              {status.map((entry, i) => (
+                <Cell key={i} fill={cores[i % cores.length]} />
+              ))}
+            </Pie>
+
+            <Tooltip
+              formatter={(value) => [value, "Qtd."]}
+              contentStyle={{
+                backgroundColor: theme === "dark" ? "#212529" : "#f8f9fa",
+                border: "none",
+                borderRadius: "8px",
+                color: theme === "dark" ? "#fff" : "#000"
+              }}
+            />
+
+            <Legend
+              verticalAlign="bottom"
+              align="center"
+              iconType="circle"
+              wrapperStyle={{
+                marginTop: "20px"
+              }}
+            />
+          </PieChart>
+        </ResponsiveContainer>
       </div>
     </Card>
   );
